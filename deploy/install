@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# Create empty password file
+#--------------------------------
+if [! -e /etc/BackupPC/webconfig.user]; then
+	touch /etc/BackupPC/webconfig.users
+	chown webconfig /etc/BackupPC/webconfig.users
+fi
+
+# Copy httpd alias to the right place
+#--------------------------------
+cp /usr/clearos/apps/backuppc/deploy/BackupPC.conf /usr/clearos/sandbox/etc/httpd/conf.d/
+
+
+# Patch config.pl for backuppc user
+#--------------------------------
+sed -i -e "s/^$Conf{CgiAdminUsers}[[:space:]]*=[[:space:]]*'';.*/$Conf{CgiAdminUsers}\t=\t'backuppc';/" /etc/BackupPC/config.pl
+
+
+# Add to sudoers for local backup
+#-------------------------------
+if ! grep 'backuppc ALL=NOPASSWD' /etc/sudoers > /dev/null; then
+    /usr/bin/logger -p local6.notice -t installer "Adding BackupPC sudoers entry"
+    echo "backuppc ALL=NOPASSWD: /bin/gtar, /usr/bin/rsync" >> /etc/sudoers
+    chmod 0440 /etc/sudoers
+fi
+
+# Patch Samba - remove -N flag to permit authentication
+#-------------------------------
+sed -i -e "s/$userName -E -N/$userName -E/" /etc/BackupPC/config.pl
+
+
+# Patch ownership for webconfig access
+#-------------------------------
+chown backuppc.webconfig /usr/share/BackupPC/sbin/BackupPC_Admin*
+chmod u+s /usr/share/BackupPC/sbin/BackupPC_Admin
+chown backuppc.webconfig /etc/BackupPC/config.pl
+if [ -e /etc/BackupPC/LOCK]; then
+	chown backuppc.webconfig /etc/BackupPC/LOCK
+fi
