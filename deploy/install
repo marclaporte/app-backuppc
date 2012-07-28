@@ -7,14 +7,10 @@ if [! -e /etc/BackupPC/webconfig.user]; then
 	chown webconfig /etc/BackupPC/webconfig.users
 fi
 
-# Copy httpd alias to the right place
-#--------------------------------
-cp /usr/clearos/apps/backuppc/deploy/BackupPC.conf /usr/clearos/sandbox/etc/httpd/conf.d/
-
 
 # Patch config.pl for backuppc user
 #--------------------------------
-sed -i -e "s/^$Conf{CgiAdminUsers}[[:space:]]*=[[:space:]]*'';.*/$Conf{CgiAdminUsers}\t=\t'backuppc';/" /etc/BackupPC/config.pl
+sed -i -e "s/$Conf{CgiAdminUsers}[[:space:]]=[[:space:]]'';/$Conf{CgiAdminUsers} = 'backuppc';/" /etc/BackupPC/config.pl
 
 
 # Add to sudoers for local backup
@@ -35,6 +31,3 @@ sed -i -e "s/$userName -E -N/$userName -E/" /etc/BackupPC/config.pl
 chown backuppc.webconfig /usr/share/BackupPC/sbin/BackupPC_Admin*
 chmod u+s /usr/share/BackupPC/sbin/BackupPC_Admin
 chown backuppc.webconfig /etc/BackupPC/config.pl
-if [ -e /etc/BackupPC/LOCK]; then
-	chown backuppc.webconfig /etc/BackupPC/LOCK
-fi

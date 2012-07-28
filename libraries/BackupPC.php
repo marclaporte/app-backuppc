@@ -6,7 +6,7 @@
  * @category   Apps
  * @package    BackupPC
  * @subpackage Libraries
- * @author     ClearFoundation <developer@clearfoundation.com>
+ * @author     Tim Burgess <trburgess@gmail.com> 
  * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/backuppc/
@@ -83,7 +83,7 @@ clearos_load_library('base/Validation_Exception');
  * @category   Apps
  * @package    BackupPC
  * @subpackage Libraries
- * @author     ClearFoundation <developer@clearfoundation.com>
+ * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/backuppc/
@@ -97,7 +97,7 @@ class BackupPC extends Daemon
 
     const COMMAND_HTPASSWD = '/usr/bin/htpasswd';
     const FILE_USER_CONFIG = '/etc/BackupPC/webconfig.users';
-    const FILE_CONFIG = '/etc/BackupPC/config.pl';
+    //const FILE_CONFIG = '/etc/BackupPC/config.pl';
 
     ///////////////////////////////////////////////////////////////////////////////
     // M E T H O D S
