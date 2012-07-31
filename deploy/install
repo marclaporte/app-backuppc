@@ -2,7 +2,7 @@
 
 # Create empty password file
 #--------------------------------
-if [! -e /etc/BackupPC/webconfig.user]; then
+if [ ! -f /etc/BackupPC/webconfig.user ]; then
 	touch /etc/BackupPC/webconfig.users
 	chown webconfig /etc/BackupPC/webconfig.users
 fi
@@ -10,7 +10,7 @@ fi
 
 # Patch config.pl for backuppc user
 #--------------------------------
-sed -i -e "s/$Conf{CgiAdminUsers}[[:space:]]=[[:space:]]'';/$Conf{CgiAdminUsers} = 'backuppc';/" /etc/BackupPC/config.pl
+sed -i -e "/^\$Conf{CgiAdminUsers}/ c\$Conf{CgiAdminUsers} = 'backuppc';" /etc/BackupPC/config.pl
 
 
 # Add to sudoers for local backup
