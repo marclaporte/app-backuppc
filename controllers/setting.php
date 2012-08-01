@@ -111,9 +111,18 @@ class Setting extends ClearOS_Controller
         // Load view data
         //---------------
 
+        try {
+	    $is_running = $this->backuppc->get_running_state();
+            //$data['is_password_set'] = $this->backuppc->is_root_password_set();
+        } catch (Exception $e) {
+            $this->page->view_exception($e);
+            return;
+        }
+
+
         // Load views
         //-----------
 
-        $this->page->view_form('backuppc/setting', $data, lang('backuppc_database'));
+        $this->page->view_form('backuppc/setting', $data, lang('backuppc_app_name'));
     }
 }

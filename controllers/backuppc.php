@@ -66,7 +66,7 @@ class BackupPC extends ClearOS_Controller {
             'backuppc/setting'
         );
 
-        $this->page->view_forms($views, lang('backuppc_backup'));
+        $this->page->view_forms($views, lang('backuppc_app_name'));
 
 	}
 

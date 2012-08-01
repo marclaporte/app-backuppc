@@ -1,15 +1,15 @@
 <?php
 
 /**
- * BackupPC daemon controller.
+ * BackupPC ajax helpers.
  *
- * @category   Apps
+ * @category   ClearOS
  * @package    BackupPC
- * @subpackage Controllers
+ * @subpackage Javascript
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
- * @link       http://www.clearfoundation.com/docs/developer/apps/backuppc/
+ * @link       http://www.clearfoundation.com/docs/developer/backuppc/
  */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -25,7 +25,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.  
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -37,48 +37,57 @@ $bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/c
 require_once $bootstrap . '/bootstrap.php';
 
 ///////////////////////////////////////////////////////////////////////////////
-// D E P E N D E N C I E S
+// T R A N S L A T I O N S
 ///////////////////////////////////////////////////////////////////////////////
 
-require clearos_app_base('base') . '/controllers/daemon.php';
+clearos_load_language('backuppc');
 
 ///////////////////////////////////////////////////////////////////////////////
-// C L A S S
+// J A V A S C R I P T
 ///////////////////////////////////////////////////////////////////////////////
 
-/**
- * BackupPC daemon controller.
- *
- * @category   Apps
- * @package    BackupPC
- * @subpackage Controllers
- * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2012 ClearFoundation
- * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
- * @link       http://www.clearfoundation.com/docs/developer/apps/backuppc/
- */
+header('Content-Type:application/x-javascript');
+?>
 
-class Server extends Daemon
-{
-    /**
-     * Server constructor.
-     */
+///////////////////////////////////////////////////////////////////////////
+// M A I N
+///////////////////////////////////////////////////////////////////////////
 
-    function __construct()
-    {
-        parent::__construct('backuppc', 'backuppc');
-    }
+$(document).ready(function() {
+    $('#backuppc_not_running').hide();
+    $('#backuppc_running').hide();
 
-    function full_status()
-    {
-        header('Cache-Control: no-cache, must-revalidate');
-        header('Content-type: application/json');
+    clearosGetBackupPCStatus();
+});
 
-        $this->load->library('backuppc/BackupPC');
 
-        $status['status'] = $this->backuppc->get_status();
+// Functions
+//----------
 
-        echo json_encode($status);
+function clearosGetBackupPCStatus() {
+    $.ajax({
+        url: '/app/backuppc/server/full_status',
+        method: 'GET',
+        dataType: 'json',
+        success : function(payload) {
+            handleBackupPCForm(payload);
+            window.setTimeout(clearosGetBackupPCStatus, 1000);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            window.setTimeout(clearosGetBackupPCStatus, 1000);
+        }
+    });
+}
+
+function handleBackupPCForm(payload) {
+    if (payload.status == 'running') {
+        $('#backuppc_not_running').hide();
+        $('#backuppc_running').show();
+    } else {
+        $('#backuppc_not_running').show();
+        $('#backuppc_running').hide();
     }
 
 }
+
+// vim: syntax=javascript

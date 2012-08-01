@@ -37,8 +37,20 @@ $this->lang->load('base');
 $this->lang->load('backuppc');
 
 ///////////////////////////////////////////////////////////////////////////////
+// Service not running
+///////////////////////////////////////////////////////////////////////////////
+
+
+echo "<div id='backuppc_not_running' style='display:none;'>";
+echo infobox_warning(lang('base_warning'), lang('backuppc_management_tool_not_accessible'));
+echo "</div>";
+
+
+///////////////////////////////////////////////////////////////////////////////
 // Password set
 ///////////////////////////////////////////////////////////////////////////////
+
+echo "<div id='backuppc_running' style='display:none;'>";
 
 echo infobox_highlight(
     lang('backuppc_management_tool'),
@@ -60,3 +72,5 @@ echo field_button_set(
 
 echo form_footer();
 echo form_close();
+
+echo "</div>";
