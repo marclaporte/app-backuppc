@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Fix sudoers if there was no LF at end
+#------------------------------------------
+if grep 'CLEARCONSOLEbackuppc' /etc/sudoers > /dev/null; then
+    /usr/bin/logger -p local6.notice -t installer "Fixing BackupPC sudoers entry"
+    /bin/sed -i -e "s/CLEARCONSOLEbackuppc/CLEARCONSOLE\nbackuppc/" /etc/sudoers  
+    /bin/chmod 0440 /etc/sudoers
+fi

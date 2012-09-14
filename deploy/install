@@ -17,7 +17,8 @@ fi
 #-------------------------------
 if ! grep 'backuppc ALL=NOPASSWD' /etc/sudoers > /dev/null; then
     /usr/bin/logger -p local6.notice -t installer "Adding BackupPC sudoers entry"
-    echo "backuppc ALL=NOPASSWD: /bin/gtar, /usr/bin/rsync" >> /etc/sudoers
+    # add RF at beginning as default sudoers does not contain a RF
+    echo -e "\nbackuppc ALL=NOPASSWD: /bin/gtar, /usr/bin/rsync" >> /etc/sudoers
     /bin/chmod 0440 /etc/sudoers
 fi
 
