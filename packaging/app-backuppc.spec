@@ -1,7 +1,7 @@
 
 Name: app-backuppc
 Epoch: 1
-Version: 1.0.4
+Version: 1.0.5
 Release: 1%{dist}
 Summary: BackupPC
 License: GPLv3
@@ -22,6 +22,7 @@ License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: BackupPC >= 3.2
+Requires: app-base-core >= 1:1.2.6
 
 %description core
 BackupPC is a high-performance, enterprise-grade system for backing up Linux and WinXX PCs and laptops to a server's disk. BackupPC is highly configurable and easy to install and maintain. It supports backup via SMB using Samba, tar over SSH/RSH/NFS or Rsync. It is robust, reliable and well documented Open Source backup software.

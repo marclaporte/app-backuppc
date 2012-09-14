@@ -33,6 +33,3 @@ fi
 /bin/chmod u+s /usr/share/BackupPC/sbin/BackupPC_Admin
 /bin/chown backuppc.webconfig /etc/BackupPC/config.pl
 
-# Reload webconfig for alias
-#-------------------------------
-/sbin/service webconfig reload

@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'backuppc';
-$app['version'] = '1.0.4';
+$app['version'] = '1.0.5';
 $app['release'] = '1';
 $app['vendor'] = 'Tim Burgess';
 $app['packager'] = 'Tim Burgess';
@@ -34,7 +34,8 @@ $app['controllers']['backuppc']['title'] = lang('backuppc_app_name');
 
 
 $app['core_requires'] = array(
-    'BackupPC >= 3.2'
+    'BackupPC >= 3.2',
+    'app-base-core >= 1:1.2.6'
 );
 
 $app['core_file_manifest'] = array(
