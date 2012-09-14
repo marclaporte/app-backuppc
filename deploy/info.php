@@ -19,7 +19,7 @@ $app['tooltip'] = lang('backuppc_app_tooltip');
 /////////////////////////////////////////////////////////////////////////////
 
 $app['name'] = lang('backuppc_app_name');
-$app['category'] = lang('base_category_system');
+$app['category'] = lang('base_category_server');
 $app['subcategory'] = lang('base_subcategory_backup');
 
 /////////////////////////////////////////////////////////////////////////////
