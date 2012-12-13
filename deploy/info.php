@@ -48,3 +48,7 @@ $app['core_file_manifest'] = array(
     ),
 );
 
+$app['delete_dependency'] = array(
+    'app-backuppc-core',
+    'BackupPC'
+);
