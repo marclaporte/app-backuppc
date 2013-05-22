@@ -3,9 +3,9 @@
 /**
  * BackupPC class
  *
- * @category   Apps
- * @package    BackupPC
- * @subpackage Libraries
+ * @category   apps
+ * @package    backuppc
+ * @subpackage libraries
  * @author     Tim Burgess <trburgess@gmail.com> 
  * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
@@ -80,9 +80,9 @@ clearos_load_library('base/Validation_Exception');
 /**
  * BackupPC class
  *
- * @category   Apps
- * @package    BackupPC
- * @subpackage Libraries
+ * @category   apps
+ * @package    backuppc
+ * @subpackage libraries
  * @author     Tim Burgess <trburgess@gmail.com>
  * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later

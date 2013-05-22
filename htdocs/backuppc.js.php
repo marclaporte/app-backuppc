@@ -3,9 +3,9 @@
 /**
  * BackupPC ajax helpers.
  *
- * @category   ClearOS
- * @package    BackupPC
- * @subpackage Javascript
+ * @category   apps
+ * @package    backuppc
+ * @subpackage javascript
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2012 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
